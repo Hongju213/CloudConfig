@@ -1,0 +1,4 @@
+# project1-test.yml 파일 
+server: 
+  name: project1-test 
+  message: 테스트 서버입니다
