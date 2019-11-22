@@ -1,7 +1,7 @@
 spring: 
   profiles:
     active:
-    - mariadb
+    - mysql
   messages:
     basename: i18n/messages
     encoding: UTF-8
