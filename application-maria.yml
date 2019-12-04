@@ -2,9 +2,6 @@ spring:
   profiles:
     active:
     - mariadb
-  messages:
-    basename: i18n/messages
-    encoding: UTF-8
 ---    
 spring: 
   profiles: cloudConfig
@@ -30,22 +27,7 @@ spring:
    password: QVY2bVLPhaIgGxTugs63ZGCge1tZtzdS
    
 ---
-#mysql 정보
-      
-spring: 
-  profiles: mysql
-  datasource:
-   driverClassName: com.mysql.jdbc.Driver
-   url: jdbc:mysql://192.168.10.146:3306/tcovered?serverTimezone=UTC
-   username: PA3LU+naiBtiTHMP5q97zPUrddCg864f
-   password: YoikCP9GSyClkVqQTaYbCb708wVoeaKR
 
----      
-#에러페이지   
-server:
-  error:
-    whitelabel:
-      enabled: true
 
 #Log 설정   
 logging:
