@@ -2,20 +2,40 @@ spring:
   profiles:
     active:
     - mariadb
----    
+
+
+      
+#mybatis 설정    
+mybatis:
+  mapper-locations:
+  - classpath:mapper/**/*.xml
+---
 spring: 
   profiles: cloudConfig
   cloud:
     config:
       server:
         git:
-          uri: https://github.com/Hongju213/CloudConfig.git
----          
+          uri: https://github.com/Hongju213/CloudConfig.git  
+  application:
+    name: config-server
+---
+
+#local 정보  
+
+spring: 
+  profiles: local
+  datasource:
+   driverClassName: org.mariadb.jdbc.Driver
+   url: jdbc:mariadb://localhost:3307/PCtracking
+#   username: PCtracking
+#   password: kimids1@
+   
+---
 #서버포트 설정
 server:
   port: 8085
-  
----
+
 #mariadb 정보  
 
 spring: 
@@ -23,21 +43,43 @@ spring:
   datasource:
    driverClassName: org.mariadb.jdbc.Driver
    url: jdbc:mariadb://192.168.10.230:3306/PCtracking
-   username: mmifEnZiCtCB+s8SZLmpEU70exBLvwX2
-   password: QVY2bVLPhaIgGxTugs63ZGCge1tZtzdS
+   username: PCtracking
+   password: kimids1@
    
 ---
+#서버포트 설정
+server:
+  port: 8085
 
+#mysql 정보
+      
+spring: 
+  profiles: mysql
+  datasource:
+   driverClassName: com.mysql.jdbc.Driver
+   url: jdbc:mysql://127.0.0.1:3306/boarddb?serverTimezone=UTC
+   username: Hong
+   password: kimids1@
 
-#Log 설정   
-logging:
-  config: classpath:spring/logback-spring.xml
+---    
 
 #JSP 연결 설정  
 spring:
  mvc:
   view:
-   prefix:  /WEB-INF/views/
-   suffix: .jsp
+    prefix: /WEB-INF/views/
+    suffix: .jsp
   static-path-pattern: /main/webapp/**
-  
+
+
+#Log 설정   
+logging:
+  path: /ServerSideLog/ServerSide.log
+  file: /ServerSideLog/ServerSide.log
+  pattern:
+    console: "%d [%-5level] %logger : %msg%n"
+    file: "%d [%-5level] [%thread] %logger : %msg%n"
+  level:
+    org.springframework.web: DEBUG
+    guru.springframework.controllers: DEBUG
+    org.hibernate: DEBUG
